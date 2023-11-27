@@ -2,14 +2,13 @@ package clubApplication;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 
 public class Booking {
 	private Member m;
 	private Facility f;
 	private LocalDateTime start;
 	private LocalDateTime end;
-	private DateTimeFormatter df=DateTimeFormatter.ofPattern("d-MMM-yyyy HH:mm", Locale.ENGLISH);
+	private DateTimeFormatter df=DateTimeFormatter.ofPattern("d-MMM-yyyy HH:mm");
 
 	public Booking(Member m, Facility f, LocalDateTime start, LocalDateTime end) throws BadBookingException {
 		if(m==null||f==null||start.isAfter(end)) {
