@@ -1,0 +1,8 @@
+package clubApplication;
+
+public class ClubApplication {
+	public static void main(String[] args) {
+		Person p1 = new Person("Inella","von","Einzbern");
+		p1.show();
+	}
+}

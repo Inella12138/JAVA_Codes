@@ -1,0 +1,37 @@
+package clubApplication;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Club {
+	private int currentNumber;
+	private List<Member> members;
+	
+	public Club() {
+		currentNumber = 0;
+		members = new ArrayList<>();
+	}
+	
+	public List<Member> getMember(){
+		return members;
+	}
+	
+	public Member addMember(Person p) {
+		Member m = new Member(p.getSurName(),p.getFirstName(),p.getSecondName(), currentNumber);
+		currentNumber++;
+		members.add(m);
+		return m;
+	}
+	public void showMember() {
+		for(Member m:members) {
+			m.show();
+		}
+	}
+	public void removeMember(int num) {
+		members.remove(num);
+	}
+	public Member findMember(int index) {
+		return members.get(index);
+	}
+	
+}

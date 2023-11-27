@@ -1,0 +1,25 @@
+package clubApplication;
+
+import java.util.List;
+
+public class ClubApplication {
+	public static void main(String[] args) {
+		Person p1 = new Person("Inella","von","Einzbern");
+		p1.show();
+		Facility f1 = new Facility("n1","d1");
+		Facility f2 = new Facility("n1","d1");
+		f1.show();
+		f2.show();
+		Member m1 = new Member("Inella","von","Einzbern",666);
+		m1.show();
+		Club c = new Club();
+		Member m2 = c.addMember(p1);
+		m2.show();
+		c.addMember(p1);
+		c.showMember();
+		c.removeMember(0);
+		c.showMember();
+		List<Member> members = c.getMember();
+		System.out.println(c.findMember(0));
+	}
+}

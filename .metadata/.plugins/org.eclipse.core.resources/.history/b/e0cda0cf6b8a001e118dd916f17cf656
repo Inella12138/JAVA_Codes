@@ -1,0 +1,15 @@
+package clubApplication;
+
+public class ClubApplication {
+	public static void main(String[] args) {
+		Person p1 = new Person("Inella","von","Einzbern");
+		p1.show();
+		Facility f1 = new Facility("n1","d1");
+		Facility f2 = new Facility("n1","d1");
+		f1.show();
+		f2.show();
+		if(f1.equals(f2)) {
+			System.out.println("equal");
+		}
+	}
+}

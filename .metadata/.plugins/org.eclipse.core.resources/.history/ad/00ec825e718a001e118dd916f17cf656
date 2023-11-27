@@ -1,0 +1,22 @@
+package clubApplication;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Club {
+	private int currentNumber;
+	private List<Member> members;
+	
+	public Club() {
+		currentNumber = 0;
+		members = new ArrayList<>();
+	}
+	
+	public Member addMember(Person p) {
+		Member m = new Member(p.getSurName(),p.getFirstName(),p.getSecondName(), currentNumber);
+		currentNumber++;
+		members.add(m);
+		return m;
+	}
+	
+}

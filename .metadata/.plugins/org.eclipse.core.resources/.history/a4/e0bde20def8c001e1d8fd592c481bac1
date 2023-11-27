@@ -1,0 +1,17 @@
+package clubApplication;
+
+import java.time.LocalDateTime;
+
+public class Booking {
+	private Member m;
+	private Facility f;
+	private LocalDateTime start;
+	private LocalDateTime end;
+	
+	public Booking(Member m,Facility f) {
+		this.m=m;
+		this.f=f;
+		start=LocalDateTime.now();
+	}
+	
+}
