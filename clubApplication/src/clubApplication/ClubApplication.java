@@ -6,7 +6,6 @@ import java.util.Locale;
 
 public class ClubApplication {
 	public static void main(String[] args) throws BadBookingException {
-		DateTimeFormatter df=DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm", Locale.ENGLISH);
 		Person p1 = new Person("Inella","von","Einzbern");
 		p1.show();
 		Facility f1 = new Facility("n1","d1");
@@ -30,13 +29,16 @@ public class ClubApplication {
 		c.showFacilities();
 		c.removeFacility("n1");
 		c.showFacilities();
+		DateTimeFormatter df=DateTimeFormatter.ofPattern("dd-MMM-yyyy HH:mm", Locale.ENGLISH);
+		DateTimeFormatter df1=DateTimeFormatter.ofPattern("d-MM-yyyy H:mm");
 		LocalDateTime t1 = LocalDateTime.parse("01-Nov-2023 15:00",df);
 		LocalDateTime t2 = LocalDateTime.parse("04-Nov-2023 15:00",df);
 		LocalDateTime t3 = LocalDateTime.parse("07-Nov-2023 15:00",df);
 		LocalDateTime t4 = LocalDateTime.parse("10-Nov-2023 15:00",df);
+		LocalDateTime t5 = LocalDateTime.parse("10-11-2023 15:00",df1);
 		try {
-			Booking b1 = new Booking(m1,f1,t1,t3);
-			Booking b2 = new Booking(m2,f1,t2,t4);
+			Booking b1 = new Booking(m1,f1,t1,t5);
+			Booking b2 = new Booking(m2,f1,t2,t5);
 			//Booking b2 = new Booking(m1,f1,t2,t1);
 			System.out.println(b1);
 			System.out.println(b1.overlaps(b2));

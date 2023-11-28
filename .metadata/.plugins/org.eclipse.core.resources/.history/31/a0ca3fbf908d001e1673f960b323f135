@@ -1,0 +1,48 @@
+package clubApplication;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class BookingRegister {
+	private HashMap<Facility,ArrayList<Booking>> f2b;
+	
+	public BookingRegister() {
+		f2b = new HashMap<>();
+	}
+	
+	public void addBooking(Member m, Facility f, LocalDateTime start, LocalDateTime end) throws BadBookingException {
+		Booking b = new Booking(m, f, start, end);
+		if (!f2b.containsKey(b)) {
+			ArrayList<Booking> l = new ArrayList<Booking>();
+			l.add(b);
+			f2b.put(f, l);
+		}
+		else {
+			ArrayList<Booking> l = f2b.get(b.getF());
+			for(Booking tb:l) {
+				if(tb.overlaps(b)) {
+					throw new BadBookingException("Error!");
+				}
+			}
+			l.add(b);
+			f2b.replace(f, l);
+		}
+	}
+	
+	public ArrayList<Booking> getBookings(Facility f,LocalDateTime rstart,LocalDateTime rend){
+		ArrayList<Booking> result = f2b.get(f);
+		for(Booking b:result) {
+			if(!((b.getStart().isAfter(rstart)||b.getStart().isBefore(rend))||(b.getEnd().isAfter(rstart)||b.getEnd().isBefore(rend)))) {
+				result.remove(b);
+			}
+		}
+		return result;
+	}
+	
+	public void removeBooking(Booking b) {
+		ArrayList<Booking> l = f2b.get(b.getF());
+		l.remove(b);
+		f2b.replace(b.getF(), l);
+	}
+}

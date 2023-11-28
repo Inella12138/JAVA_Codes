@@ -5,48 +5,51 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class Booking {
-	private Member m;
-	private Facility f;
-	private LocalDateTime start;
-	private LocalDateTime end;
-	private DateTimeFormatter df=DateTimeFormatter.ofPattern("d-MMM-yyyy HH:mm", Locale.ENGLISH);
+	private Member member;
+	private Facility facility;
+	private LocalDateTime startTime;
+	private LocalDateTime endTime;
+	private DateTimeFormatter df = DateTimeFormatter.ofPattern("d-MMM-yyyy HH:mm", Locale.ENGLISH);
 
-	public Booking(Member m, Facility f, LocalDateTime start, LocalDateTime end) throws BadBookingException {
-		if(m==null||f==null||start.isAfter(end)) {
+	public Booking(Member member, Facility facility, LocalDateTime startTime, LocalDateTime endTime)
+			throws BadBookingException {
+		if (member == null || facility == null || startTime.isAfter(endTime)) {
 			throw new BadBookingException("Error!");
 		}
-		this.m = m;
-		this.f = f;
-		this.start = start;
-		this.end = end;
+		this.member = member;
+		this.facility = facility;
+		this.startTime = startTime;
+		this.endTime = endTime;
 	}
 
-	public Member getM() {
-		return m;
+	public Member getMember() {
+		return member;
 	}
 
-	public Facility getF() {
-		return f;
+	public Facility getFacility() {
+		return facility;
 	}
 
-	public LocalDateTime getStart() {
-		return start;
+	public LocalDateTime getStartTime() {
+		return startTime;
 	}
 
-	public LocalDateTime getEnd() {
-		return end;
+	public LocalDateTime getEndTime() {
+		return endTime;
 	}
-	
-	public boolean overlaps(Booking b) {
-		if(b.f.equals(this.f)) {
-			if((b.start.isAfter(this.start)&&b.start.isBefore(this.end))||(this.start.isAfter(b.start)&&this.start.isBefore(b.end))) {
+
+	public boolean overlaps(Booking booking) {
+		if (booking.facility.equals(this.facility)) {
+			if ((booking.startTime.isAfter(this.startTime) && booking.startTime.isBefore(this.endTime))
+					|| (this.startTime.isAfter(booking.startTime) && this.startTime.isBefore(booking.endTime))) {
 				return true;
 			}
 		}
 		return false;
 	}
+
 	@Override
 	public String toString() {
-		return m.toString()+" booked "+f.toString()+" from "+start.format(df)+" to "+end.format(df);
+		return member.toString() + " booked " + facility.toString() + " from " + startTime.format(df) + " to " + endTime.format(df);
 	}
 }

@@ -1,6 +1,6 @@
 package clubApplication;
 
-public class Facility {
+public class Facility implements Comparable<Facility> {
 	private String name;
 	private String description;
 	
@@ -27,5 +27,8 @@ public class Facility {
 	public void show() {
 		System.out.println(this);
 	}
-	
+	@Override
+	public int compareTo(Facility another) {
+		return this.name.compareTo(another.name);
+	}
 }
